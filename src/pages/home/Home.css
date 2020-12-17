@@ -1,0 +1,30 @@
+.Home {
+  /* border: 1px solid #d11; */
+  height: 100%;
+  display: flex;
+  /* flex-direction: column; */
+
+}
+
+.Home>.menu_horizontal {
+  display: flex;
+  justify-content: space-between;
+}
+.Home .SubTitle{
+  border: 1px solid #0ff;
+  height: 45px;
+  text-align: right;
+}
+
+.Home>.content {
+  background-color: #c1e2ac;
+  flex-grow: 1;
+  /* filter: invert(80%); */
+}
+
+.PlusCircleOutlined {
+  position: absolute;
+  top: 50%;
+  transform: translate(-200%, -50%);
+  overflow: visible;
+}

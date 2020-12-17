@@ -6,12 +6,10 @@ import './Home.css';
 import Pone from '../p1/P1.jsx';
 import Ptwo from '../p2/P2.jsx';
 
-import { Menu, Drawer, Radio } from 'antd';
+import { Menu, Drawer, Radio, Dropdown } from 'antd';
 import {
 	AppstoreOutlined,
-	MenuUnfoldOutlined,
-	MenuFoldOutlined,
-	PlusCircleOutlined,
+	DownOutlined,
 	PieChartOutlined,
 	DesktopOutlined,
 	ContainerOutlined,
@@ -26,18 +24,18 @@ export default class App extends Component {
 			menuMode: 'horizontal',
 			// menuMode: 'inline',
 		}
-    }
-   
+	}
+
 	onChange = e => {
-		this.setState({ menuMode: e.target.value})
+		this.setState({ menuMode: e.target.value })
 	};
-	componentDidMount() { 
+	componentDidMount() {
 		let htmlWidth = document.querySelector('html').clientWidth
 		window.onresize = (e) => {
 			htmlWidth = e.target.innerWidth
 		}
 		window.addEventListener('mousemove', (e) => {
-			if (!this.state.visible && (htmlWidth - e.x) <= 20){
+			if (!this.state.visible && (htmlWidth - e.x) <= 20) {
 				this.setState({
 					visible: true
 				})
@@ -50,17 +48,39 @@ export default class App extends Component {
 	}
 	render(h) {
 		let { visible, menuMode } = this.state
+		
+		const menu = (
+			<Menu>
+				<Menu.Item>
+					<span>个人中心</span>
+				</Menu.Item>
+				<Menu.Item>
+					<span>个人设置</span>
+				</Menu.Item>
+				<Menu.Item>
+					<Link to="/">
+						退出登录
+      				</Link>
+				</Menu.Item>
+			</Menu>
+		);
 		const createSubTitle = flag => {
 			if (flag) {
-				return (<div className="SubTitle">999</div>)
+				return (<div className="SubTitle">
+					<Dropdown overlay={menu}>
+						<span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+							admin <DownOutlined />
+						</span>
+					</Dropdown>
+				</div>)
 			} else {
 				return ''
 			}
 		}
 		console.log(menuMode === "horizontal");
 		return (
-			<div className="Home" style={{ flexDirection: menuMode == 'horizontal' ? 'column' : 'row' }}>
-				<div className={menuMode === "horizontal" ? "menu_horizontal":''}>
+			<div className="Home" style={{ flexDirection: menuMode === 'horizontal' ? 'column' : 'row' }}>
+				<div className={menuMode === "horizontal" ? "menu_horizontal" : 'menu'}>
 					<Menu
 						defaultSelectedKeys={['1']}
 						defaultOpenKeys={['sub1']}
@@ -72,7 +92,7 @@ export default class App extends Component {
 						</Menu.Item>
 						<Menu.Item key="2" icon={<DesktopOutlined />}>
 							<Link to="/Home/ptwo">ptwo</Link>
-          				</Menu.Item>
+						</Menu.Item>
 						<Menu.Item key="3" icon={<ContainerOutlined />}>
 							Option 3
           				</Menu.Item>
@@ -90,12 +110,12 @@ export default class App extends Component {
 								<Menu.Item key="12">Option 12</Menu.Item>
 							</SubMenu>
 						</SubMenu>
-						
+
 					</Menu>
-					{createSubTitle(menuMode == "horizontal")}
+					{createSubTitle(menuMode === "horizontal")}
 				</div>
-                <div className="content">
-					{createSubTitle(menuMode == "inline" || menuMode == "vertical")}
+				<div className="content">
+					{createSubTitle(menuMode === "inline" || menuMode === "vertical")}
 					<HashRouter>
 						<Switch>
 							<Route path='/Home/pone' component={Pone}></Route>

@@ -9,11 +9,18 @@
 .Home>.menu_horizontal {
   display: flex;
   justify-content: space-between;
+  background-color: #001529;
+}
+.Home>.menu {
+  background-color: #001529;
 }
 .Home .SubTitle{
-  border: 1px solid #0ff;
+  /* border: 1px solid #0ff; */
   height: 45px;
-  text-align: right;
+  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .Home>.content {

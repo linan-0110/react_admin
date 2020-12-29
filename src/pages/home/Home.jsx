@@ -35,7 +35,7 @@ export default class App extends Component {
 			htmlWidth = e.target.innerWidth
 		}
 		window.addEventListener('mousemove', (e) => {
-			if (!this.state.visible && (htmlWidth - e.x) <= 20) {
+			if (!this.state.visible && (htmlWidth - e.x) <= 10) {
 				this.setState({
 					visible: true
 				})
@@ -48,7 +48,6 @@ export default class App extends Component {
 	}
 	render(h) {
 		let { visible, menuMode } = this.state
-		
 		const menu = (
 			<Menu>
 				<Menu.Item>
@@ -77,7 +76,6 @@ export default class App extends Component {
 				return ''
 			}
 		}
-		console.log(menuMode === "horizontal");
 		return (
 			<div className="Home" style={{ flexDirection: menuMode === 'horizontal' ? 'column' : 'row' }}>
 				<div className={menuMode === "horizontal" ? "menu_horizontal" : 'menu'}>

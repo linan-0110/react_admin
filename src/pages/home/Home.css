@@ -24,7 +24,6 @@
 }
 
 .Home>.content {
-  background-color: #c1e2ac;
   flex-grow: 1;
   /* filter: invert(80%); */
 }
